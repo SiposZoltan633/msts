@@ -2,8 +2,11 @@
 body
 {
     background-image: url(MSTS.jpg);
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: auto;
+    height: 100vh;
+    margin: 0;
 }
 
 #ulb {
@@ -60,3 +63,4 @@ li a:hover:not(.active) {
     height: auto;
     padding-bottom: 40%;
 }
+
