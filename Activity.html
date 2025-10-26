@@ -12,7 +12,6 @@ li a { display: block; color: white; text-align: center; padding: 14px 16px; tex
 li a:hover:not(.active) { background-color: #111; }
 .active { background-color: #04AA6D; }
 
-/* Download link blokkszintűvé tétele a kattintás biztosításához */
 .download-link {
   display: inline-block;
   cursor: pointer;
@@ -38,10 +37,11 @@ li a:hover:not(.active) { background-color: #111; }
 
 <h1>Timetable-k nem activity-k egyenlőre ez változhat</h1>
 
-<!-- 98-as vonal -->
+<!-- 98-es vonal -->
 <p style="color: black;">98-es vonal</p>
 <p style="color:red; font-size:24px;">
   <a href="https://drive.google.com/file/d/1PxT1IyBdT_6mactJoiNQ1MA5kJ7GzKG9/view?usp=share_link"
+     target="_blank"
      class="download-link" data-counter="link5317">
     5317
   </a>
@@ -51,6 +51,7 @@ li a:hover:not(.active) { background-color: #111; }
 <!-- 80-as vonal -->
 <p style="color: black;">80-as vonal</p>
 <a href="https://drive.google.com/file/d/11hh-XumWZCW1DvlaP4mMnUFJVsEtyYs-/view?usp=drive_link"
+   target="_blank"
    class="download-link" data-counter="link5247">
   <img src="5247.png" alt="80-as vonal">
 </a>
@@ -59,6 +60,7 @@ li a:hover:not(.active) { background-color: #111; }
 <!-- 85-ös vonal -->
 <p style="color: black;">85-ös vonal</p>
 <a href="https://drive.google.com/file/d/1knPRsrbx_MRsE4Ml9j6tsF-sCW4AU7cJ/view?usp=share_link"
+   target="_blank"
    class="download-link" data-counter="link5530">
   <img src="5530.png" alt="85-ös vonal">
 </a>
@@ -67,6 +69,7 @@ li a:hover:not(.active) { background-color: #111; }
 <!-- 100-as vonal -->
 <p style="color: black;">100-as vonal</p>
 <a href="https://drive.google.com/file/d/1OJKC5kE1kZYMUY1UQ2UD6Zo54LgxSDpv/view?usp=share_link"
+   target="_blank"
    class="download-link" data-counter="link580TIC">
   <img src="580TIC.png" alt="100-as vonal">
 </a>
@@ -96,21 +99,20 @@ li a:hover:not(.active) { background-color: #111; }
   // 🔹 Letöltő linkek kezelése
   const links = document.querySelectorAll('.download-link');
   links.forEach(link => {
-    const counterId = link.dataset.counter; // Firebase kulcs
+    const counterId = link.dataset.counter;
     const counterRef = db.ref('counters/' + counterId);
 
-    // Valós idejű frissítés a számlálóhoz
+    // Valós idejű számláló frissítés
     counterRef.on('value', snapshot => {
       const val = snapshot.val() || 0;
       const counterElem = document.getElementById(counterId + '-counter');
       if(counterElem) counterElem.textContent = val + " letöltés";
     });
 
-    // Kattintás esemény
+    // Kattintás növeléshez
     link.addEventListener('click', function(e) {
-      e.preventDefault();
-      counterRef.transaction(current => (current || 0) + 1); // növelés
-      window.open(e.currentTarget.href, '_blank'); // új ablak
+      counterRef.transaction(current => (current || 0) + 1);
+      // target="_blank" miatt nem kell window.open
     });
   });
 </script>
