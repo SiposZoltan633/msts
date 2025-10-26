@@ -36,19 +36,6 @@
     </style>
 </head>
 <body bgcolor="yellow">
-   <script>
-    const szamElem = document.getElementById('szam');
-    const link = document.getElementById('noveles');
-
-    // Alapérték
-    let szam = 0;
-
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        szam++;                 
-        szamElem.textContent = szam;
-    });
-    </script>
   <h1 style="color: black;">Feladatok</h1>
     <ul>
         <li><a href="https://siposzoltan633.github.io/msts/index.html">Főoldal</a></li>
@@ -70,12 +57,24 @@
 <p style="color: black;">100-as vonal</h1>
     <br>
 <a href="https://drive.google.com/file/d/1OJKC5kE1kZYMUY1UQ2UD6Zo54LgxSDpv/view?usp=drive_link"><img src="580TIC.png"></a>
+<script>
+    const szamElem = document.getElementById('szam');
+    const link = document.getElementById('noveles');
 
- 
+    // Alapérték
+    let szam = 0;
+
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        szam++;                 
+        szamElem.textContent = szam;
+    });
+    </script>
 
     
 </body>
 </html>
+
 
 
 
