@@ -52,7 +52,7 @@
  <p style="color: black;">85-ös vonal</p>
     <br>
 <a href="https://drive.google.com/file/d/1knPRsrbx_MRsE4Ml9j6tsF-sCW4AU7cJ/view?usp=drive_link" id="noveles"><img src="5530.png"></a>
-    <p id="szam">0</p>
+    <p id="szam">0 letöltések</p>
     <br>
 <p style="color: black;">100-as vonal</h1>
     <br>
@@ -61,19 +61,18 @@
     const szamElem = document.getElementById('szam');
     const link = document.getElementById('noveles');
 
-    // Alapérték
     let szam = 0;
 
     link.addEventListener('click', function(event) {
-        event.preventDefault();
+        event.preventDefault(); // a link ne navigáljon
         szam++;                 
-        szamElem.textContent = szam;
+        szamElem.textContent = szam + " letöltés";
     });
-    </script>
+</script>
 
-    
 </body>
 </html>
+
 
 
 
