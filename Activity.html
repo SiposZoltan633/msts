@@ -2,7 +2,6 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feladatok</title>
 <style>
@@ -75,9 +74,9 @@ li a:hover:not(.active) { background-color: #111; }
 </a>
 <p id="link580TIC-counter">0 letöltés</p>
 
-<!-- Firebase könyvtárak CDN -->
-<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"></script>
+<!-- Firebase compat SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
 <script>
   // 🔹 Firebase konfiguráció
@@ -93,7 +92,7 @@ li a:hover:not(.active) { background-color: #111; }
   };
 
   // 🔹 Firebase inicializálás
-  const app = firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
 
   // 🔹 Letöltő linkek kezelése
@@ -104,9 +103,7 @@ li a:hover:not(.active) { background-color: #111; }
 
     // Ha nincs érték, állítsd 0-ra
     counterRef.once('value').then(snapshot => {
-      if (snapshot.val() === null) {
-        counterRef.set(0);
-      }
+      if (snapshot.val() === null) counterRef.set(0);
     });
 
     // Valós idejű frissítés
@@ -116,10 +113,11 @@ li a:hover:not(.active) { background-color: #111; }
       if(counterElem) counterElem.textContent = val + " letöltés";
     });
 
-    // Kattintás esemény: növelés
+    // Kattintás esemény
     link.addEventListener('click', function(e) {
-      counterRef.transaction(current => (current || 0) + 1);
-      // target="_blank" miatt nem kell window.open
+      counterRef.transaction(current => (current || 0) + 1)
+        .then(() => console.log('Számláló növelve: ' + counterId))
+        .catch(err => console.error('Hiba a számláló növelésénél:', err));
     });
   });
 </script>
