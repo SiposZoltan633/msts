@@ -63,12 +63,15 @@
         let szam = 0;
 
         link.addEventListener('click', function(event) {
-            szam++;
-            szamElem.textContent = szam + " letöltés";
-            window.open(link.href, '_blank'); // új ablakban nyitja a linket
-        });
+    event.preventDefault(); // megakadályozza az alapértelmezett navigációt
+    szam++;                 
+    szamElem.textContent = szam + " letöltés";
+    window.open(link.href, '_blank'); // új ablakban nyitja a linket
+    });
+
     });
 </script>
 
 </body>
 </html>
+
