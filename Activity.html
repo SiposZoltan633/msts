@@ -39,7 +39,7 @@ li a:hover:not(.active) { background-color: #111; }
 <p id="link5247-counter">0 letöltés</p>
 
 <p style="color: black;">85-ös vonal</p>
-<a href="https://drive.google.com/file/d/1knPRsrbx_MRsE4Ml9j6tsF-sCW4AU7cJ/view?usp=drive_link" class="download-link" data-counter="link5530">
+<a href="https://drive.google.com/file/d/1knPRsrbx_MRsE4Ml9j6tsF-sCW4AU7cJ/view?usp=share_link" class="download-link" data-counter="link5530">
   <img src="5530.png">
 </a>
 <p id="link5530-counter">0 letöltés</p>
@@ -50,18 +50,18 @@ li a:hover:not(.active) { background-color: #111; }
 </a>
 <p id="link580TIC-counter">0 letöltés</p>
 
-<!-- Firebase könyvtárak -->
+<!-- Firebase könyvtárak CDN -->
 <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"></script>
 
 <script>
-  // 🔹 A TE FIREBASE KONFIGURÁCIÓD ide:
+  // 🔹 Firebase konfiguráció
   const firebaseConfig = {
     apiKey: "AIzaSyD35hrtc7Vs55IyUT3DLFB5xf6kPvtMvdw",
     authDomain: "mstsdowloadsclick.firebaseapp.com",
     databaseURL: "https://mstsdowloadsclick-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "mstsdowloadsclick",
-    storageBucket: "mstsdowloadsclick.appspot.com",
+    storageBucket: "mstsdowloadsclick.firebasestorage.app",
     messagingSenderId: "991734193545",
     appId: "1:991734193545:web:2c62411b5201f022ed1558",
     measurementId: "G-NGQTZKPR5F"
@@ -71,13 +71,13 @@ li a:hover:not(.active) { background-color: #111; }
   const app = firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
 
-  // 🔹 Összes letöltő link kezelése
+  // 🔹 Letöltő linkek kezelése
   const links = document.querySelectorAll('.download-link');
   links.forEach(link => {
-    const counterId = link.dataset.counter; // Egyedi azonosító a Firebase-ben
+    const counterId = link.dataset.counter; // Firebase kulcs
     const counterRef = db.ref('counters/' + counterId);
 
-    // Valós idejű figyelés
+    // Valós idejű frissítés
     counterRef.on('value', snapshot => {
       const val = snapshot.val() || 0;
       const counterElem = document.getElementById(counterId + '-counter');
@@ -87,7 +87,7 @@ li a:hover:not(.active) { background-color: #111; }
     // Kattintás esemény
     link.addEventListener('click', e => {
       e.preventDefault();
-      counterRef.transaction(current => (current || 0) + 1);
+      counterRef.transaction(current => (current || 0) + 1); // növelés
       window.open(link.href, '_blank'); // új ablak
     });
   });
