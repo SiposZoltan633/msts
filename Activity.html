@@ -102,14 +102,21 @@ li a:hover:not(.active) { background-color: #111; }
     const counterId = link.dataset.counter;
     const counterRef = db.ref('counters/' + counterId);
 
-    // Valós idejű számláló frissítés
+    // Ha nincs érték, állítsd 0-ra
+    counterRef.once('value').then(snapshot => {
+      if (snapshot.val() === null) {
+        counterRef.set(0);
+      }
+    });
+
+    // Valós idejű frissítés
     counterRef.on('value', snapshot => {
       const val = snapshot.val() || 0;
       const counterElem = document.getElementById(counterId + '-counter');
       if(counterElem) counterElem.textContent = val + " letöltés";
     });
 
-    // Kattintás növeléshez
+    // Kattintás esemény: növelés
     link.addEventListener('click', function(e) {
       counterRef.transaction(current => (current || 0) + 1);
       // target="_blank" miatt nem kell window.open
