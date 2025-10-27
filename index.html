@@ -61,76 +61,89 @@
       background-color: #777;
     }
 
-    /* Üzenet rész – jobbra igazítva */
-    .uzenet {
-      text-align: right;
-      font-size: 16px;
-      margin: 15px 25px 10px 0;
-      background: none; /* nincs háttér */
-    }
-
-    .uzenet a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-
-    .uzenet a:hover {
-      text-decoration: underline;
-    }
-
-    /* Footer (Tudnivalók ide kerülnek) */
+    /* Footer – két oszlopos elrendezés */
     footer {
-      background-color: rgba(51, 51, 51, 0.8);
+      background-color: rgba(51, 51, 51, 0.85);
       color: white;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
       padding: 20px;
       font-size: 15px;
       margin-top: auto;
       border-radius: 10px 10px 0 0;
     }
 
-    footer #nagybetu {
+    /* Bal oldal – Tudnivalók */
+    .tudnivalok-footer {
+      flex: 1 1 300px;
+      min-width: 280px;
+    }
+
+    .tudnivalok-footer #nagybetu {
       font-size: 20px;
       font-weight: bold;
       text-decoration: underline;
       margin-bottom: 10px;
+      text-align: left;
     }
 
-    footer ul {
+    .tudnivalok-footer ul {
       list-style-type: disc;
       text-align: left;
-      max-width: 400px;
-      margin: 0 auto;
       padding-left: 20px;
+      margin: 0;
     }
 
-    footer li {
+    .tudnivalok-footer li {
       margin: 5px 0;
     }
 
-    /* RESPONSIVE nézet telefonokra */
-    @media (max-width: 600px) {
-      .felso h1 {
-        font-size: 22px;
-      }
+    /* Jobb oldal – Üzenet */
+    .uzenet-footer {
+      flex: 1 1 300px;
+      min-width: 280px;
+      text-align: right;
+    }
 
-      #ulb {
+    .uzenet-footer p {
+      margin: 0;
+    }
+
+    .uzenet-footer a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .uzenet-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Alsó szerzői jog sor */
+    .copy {
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      margin-top: 15px;
+      opacity: 0.8;
+    }
+
+    /* RESPONSIVE nézet telefonokra */
+    @media (max-width: 700px) {
+      footer {
         flex-direction: column;
         align-items: center;
-      }
-
-      .lib a {
-        width: 80%;
         text-align: center;
       }
 
-      .uzenet {
+      .tudnivalok-footer, .uzenet-footer {
         text-align: center;
-        margin: 10px;
       }
 
-      footer {
-        font-size: 16px;
+      .tudnivalok-footer ul {
+        padding-left: 0;
+        list-style-position: inside;
       }
     }
   </style>
@@ -148,19 +161,24 @@
     </ul>
   </div>  
 
-  <div class="uzenet">
-    <p>Üzenet küldése Sipos Zoltánnak: 
-      <a href="mailto:siposz6363@gmail.com">siposz6363@gmail.com</a>
-    </p>
-  </div>
-
   <footer>
-    <p id="nagybetu">Tudnivalók</p>
-    <ul>
-      <li>5530 Activity hangokkal (csak Cab nézetben).</li>
-      <li>5317 frissítés várható.</li>
-    </ul>
-    <p style="margin-top:15px; font-size:13px;">© 2025 Sipos Zoltán</p>
+    <div class="tudnivalok-footer">
+      <p id="nagybetu">Tudnivalók</p>
+      <ul>
+        <li>5530 Activity hangokkal (csak Cab nézetben).</li>
+        <li>5317 frissítés várható.</li>
+      </ul>
+    </div>
+
+    <div class="uzenet-footer">
+      <p>Üzenet küldése Sipos Zoltánnak: 
+        <a href="mailto:siposz6363@gmail.com">siposz6363@gmail.com</a>
+      </p>
+    </div>
+
+    <div class="copy">
+      <p>© 2025 Sipos Zoltán</p>
+    </div>
   </footer>
 </body>
 </html>
