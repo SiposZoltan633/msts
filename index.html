@@ -10,16 +10,27 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #fafafa;
+      background-image: url('MSTS.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #000;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
+    /* Áttetsző háttér a tartalom mögé, hogy olvasható legyen */
+    .felso, .uzenet, footer {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      margin: 10px;
+      padding: 10px;
+    }
+
     /* Felső rész */
     .felso {
-      background-color: #333;
-      padding: 10px;
+      background-color: rgba(51, 51, 51, 0.9);
     }
 
     .felso h1 {
@@ -59,7 +70,6 @@
     /* Üzenet rész */
     .uzenet {
       text-align: center;
-      margin: 20px;
       font-size: 16px;
     }
 
@@ -72,9 +82,9 @@
       text-decoration: underline;
     }
 
-    /* Footer (tudnivalók kerül ide) */
+    /* Footer (Tudnivalók ide kerülnek) */
     footer {
-      background-color: #333;
+      background-color: rgba(51, 51, 51, 0.9);
       color: white;
       text-align: center;
       padding: 20px;
@@ -156,8 +166,3 @@
   </footer>
 </body>
 </html>
-
-
-
-
-
