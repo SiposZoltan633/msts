@@ -1,42 +1,162 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="fooldal.css">
-    <title>Főoldal</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Főoldal</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Felső rész */
+    .felso {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    .felso h1 {
+      color: red;
+      text-align: center;
+      margin: 0;
+    }
+
+    /* Navigáció */
+    #ulb {
+      list-style-type: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .lib {
+      margin: 5px;
+    }
+
+    .lib a {
+      text-decoration: none;
+      color: white;
+      padding: 8px 12px;
+      display: block;
+      background-color: #555;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    .lib a:hover {
+      background-color: #777;
+    }
+
+    /* Üzenet rész */
+    .uzenet {
+      text-align: center;
+      margin: 20px;
+      font-size: 16px;
+    }
+
+    .uzenet a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    .uzenet a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer (tudnivalók kerül ide) */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+      margin-top: auto;
+    }
+
+    footer #nagybetu {
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 10px;
+    }
+
+    footer ul {
+      list-style-type: disc;
+      text-align: left;
+      max-width: 400px;
+      margin: 0 auto;
+      padding-left: 20px;
+    }
+
+    footer li {
+      margin: 5px 0;
+    }
+
+    /* RESPONSIVE nézet telefonokra */
+    @media (max-width: 600px) {
+      .felso h1 {
+        font-size: 22px;
+      }
+
+      #ulb {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .lib a {
+        width: 80%;
+        text-align: center;
+      }
+
+      footer {
+        font-size: 16px;
+      }
+
+      footer ul {
+        padding-left: 25px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="felso">
-      <h1 style="color: red;">Főoldal</h1>
-      
-      <ul id="ulb">
+  <div class="felso">
+    <h1>Főoldal</h1>
+    <ul id="ulb">
       <li class="lib"><a class="active" href="https://siposzoltan633.github.io/msts/index.html">Főoldal</a></li>
-      <li class="lib"><a href="https://siposzoltan633.github.io/msts/Activity.html">Feladatok,Activity</a></li>
-      <li class="lib"><a href="https://siposzoltan633.github.io/msts/vonat.html">Vonat,train</a></li>
-      <li class="lib"><a href="https://siposzoltan633.github.io/msts/sound.html">sound</a></li>
-      <li class="lib"><a href="https://siposzoltan633.github.io/msts/kijelzo.html">kijelzo</a></li>
-      </ul>
-    </div>  
-    <div class="uzenet">
-      <p>üzenet küldése Sipos Zoltának:<a href="mailto:siposz6363@gmail.com">siposz6363@gmail.com</a></p>
-    </div>
+      <li class="lib"><a href="https://siposzoltan633.github.io/msts/Activity.html">Feladatok, Activity</a></li>
+      <li class="lib"><a href="https://siposzoltan633.github.io/msts/vonat.html">Vonat, Train</a></li>
+      <li class="lib"><a href="https://siposzoltan633.github.io/msts/sound.html">Sound</a></li>
+      <li class="lib"><a href="https://siposzoltan633.github.io/msts/kijelzo.html">Kijelző</a></li>
+    </ul>
+  </div>  
 
-<div class="tudnivalok">
-  <p id="nagybetu"><u>Tudnivalók</u></p>
-  <ul id="ulc">
-    <li>
-        <p>5530 Activity hangokkal(csak Cab nézetben).</p>
-    </li>
-    <li>
-        <p>5317 frissítés várható</p>
-    </li>
-  </ul>
-</div>
+  <div class="uzenet">
+    <p>Üzenet küldése Sipos Zoltánnak: 
+      <a href="mailto:siposz6363@gmail.com">siposz6363@gmail.com</a>
+    </p>
+  </div>
 
+  <footer>
+    <p id="nagybetu">Tudnivalók</p>
+    <ul>
+      <li>5530 Activity hangokkal (csak Cab nézetben).</li>
+      <li>5317 frissítés várható.</li>
+    </ul>
+    <p style="margin-top:15px; font-size:13px;">© 2025 Sipos Zoltán</p>
+  </footer>
 </body>
 </html>
+
 
 
 
