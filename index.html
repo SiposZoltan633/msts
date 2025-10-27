@@ -20,17 +20,11 @@
       min-height: 100vh;
     }
 
-    /* Áttetsző háttér a tartalom mögé, hogy olvasható legyen */
-    .felso, .uzenet, footer {
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      margin: 10px;
-      padding: 10px;
-    }
-
     /* Felső rész */
     .felso {
-      background-color: rgba(51, 51, 51, 0.9);
+      background-color: rgba(51, 51, 51, 0.8);
+      border-radius: 0 0 10px 10px;
+      padding: 10px;
     }
 
     .felso h1 {
@@ -67,10 +61,12 @@
       background-color: #777;
     }
 
-    /* Üzenet rész */
+    /* Üzenet rész – jobbra igazítva */
     .uzenet {
-      text-align: center;
+      text-align: right;
       font-size: 16px;
+      margin: 15px 25px 10px 0;
+      background: none; /* nincs háttér */
     }
 
     .uzenet a {
@@ -84,12 +80,13 @@
 
     /* Footer (Tudnivalók ide kerülnek) */
     footer {
-      background-color: rgba(51, 51, 51, 0.9);
+      background-color: rgba(51, 51, 51, 0.8);
       color: white;
       text-align: center;
       padding: 20px;
       font-size: 15px;
       margin-top: auto;
+      border-radius: 10px 10px 0 0;
     }
 
     footer #nagybetu {
@@ -127,12 +124,13 @@
         text-align: center;
       }
 
-      footer {
-        font-size: 16px;
+      .uzenet {
+        text-align: center;
+        margin: 10px;
       }
 
-      footer ul {
-        padding-left: 25px;
+      footer {
+        font-size: 16px;
       }
     }
   </style>
