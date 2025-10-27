@@ -1,58 +1,154 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kijelzo</title>
-    <style>
-        footer {
-         text-align: right;
-       }
-         ul {
-           list-style-type: none;
-           margin: 0;
-           padding: 0;
-           overflow: hidden;
-           background-color: #333;
-         }
-         
-         li {
-           float: left;
-         }
-         
-         li a {
-           display: block;
-           color: white;
-           text-align: center;
-           padding: 14px 16px;
-           text-decoration: none;
-         }
-         
-         li a:hover:not(.active) {
-           background-color: #111;
-         }
-         
-         .active {
-           background-color: #04AA6D;
-         }
-     </style>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kijelzők</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: white;
+}
+
+/* Felső rész és menü */
+.felso {
+  background-color: rgba(51, 51, 51, 0.8);
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.felso h1 {
+  color: black;
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+/* Menü */
+#ulb {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#ulb li {
+  margin: 5px;
+}
+
+#ulb li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 8px 12px;
+  text-decoration: none;
+  background-color: #555;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+#ulb li a:hover {
+  background-color: #777;
+}
+
+#ulb li a.active {
+  background-color: #04AA6D;
+}
+
+/* Tartalom */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.download-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: underline;
+  color: white;
+}
+
+/* Footer */
+footer {
+  background-color: rgba(51, 51, 51, 0.85);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px 10px 0 0;
+  text-align: left;
+  margin-top: auto;
+}
+
+footer a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Reszponzív */
+@media (max-width: 600px) {
+  .felso h1 {
+    font-size: 1.5em;
+  }
+
+  #ulb {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #ulb li a {
+    width: 80%;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  .download-link {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  footer {
+    text-align: center;
+  }
+}
+</style>
 </head>
-<body bgcolor="gray">
-    <h1>Kijelzők</h1>
-    <ul>
-        <li><a href="https://siposzoltan633.github.io/msts/index.html">Főoldal</a></li>
-        <li><a href="https://siposzoltan633.github.io/msts/Activity.html">Feladatok,Activity</a></li>
-        <li><a href="https://siposzoltan633.github.io/msts/vonat.html">Vonat,train</a></li>
-        <li><a href="https://siposzoltan633.github.io/msts/sound.html">sound</a></li>
-        <li><a class="active" href="https://siposzoltan633.github.io/msts/kijelzo.html">kijelző</a></li>
-    </ul>
-    <h2>flirt</h2>
-    <p>kijelző_pack</p>
-    <a href="https://drive.google.com/file/d/1wEop8-PGB6JZlIIzjVznBeOgmxTGEiVB/view?usp=share_link">Flirtkijelző_pack</a>
-    <footer class="üzenet">
-        <p>Itt tudsz szólni hogy szerinted milyen kijelző legyen a következő<br>
-        <a href="mailto:siposz6363@gmail.com">siposz6363@gmail.com</a></p>
-      </footer>
+<body>
+
+<div class="felso">
+  <h1>Kijelzők</h1>
+  <ul id="ulb">
+    <li><a href="https://siposzoltan633.github.io/msts/index.html">Főoldal</a></li>
+    <li><a href="https://siposzoltan633.github.io/msts/Activity.html">Feladatok,Activity</a></li>
+    <li><a href="https://siposzoltan633.github.io/msts/vonat.html">Vonat,train</a></li>
+    <li><a href="https://siposzoltan633.github.io/msts/sound.html">sound</a></li>
+    <li><a class="active" href="https://siposzoltan633.github.io/msts/kijelzo.html">kijelző</a></li>
+  </ul>
+</div>
+
+<div class="content">
+  <h2>Flirt</h2>
+  <p>kijelző_pack</p>
+  <a href="https://drive.google.com/file/d/1wEop8-PGB6JZlIIzjVznBeOgmxTGEiVB/view?usp=share_link" class="download-link">Flirt kijelző_pack</a>
+</div>
+
 </body>
 </html>
