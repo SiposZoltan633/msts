@@ -1,52 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vonat</title>
-    <style>
-         ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background-color: #333;
-        }
-        
-        li {
-          float: left;
-        }
-        
-        li a {
-          display: block;
-          color: white;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-        }
-        
-        li a:hover:not(.active) {
-          background-color: #111;
-        }
-        
-        .active {
-          background-color: #04AA6D;
-        }
-    </style>
-</head>
-<body bgcolor="yellow">
-  <h1>Vonat</h1>
-    <ul>
-        <li><a href="https://siposzoltan633.github.io/msts/index.html">Főoldal</a></li>
-        <li><a href="https://siposzoltan633.github.io/msts/Activity.html">Feladatok,Activity</a></li>
-        <li><a class="active" href="https://siposzoltan633.github.io/msts/vonat.html">Vonat,train</a></li>
-        <li><a href="https://siposzoltan633.github.io/msts/sound.html">sound</a></li>
-        <li><a href="https://siposzoltan633.github.io/msts/kijelzo.html">kijelzo</a></li>
-    </ul>
-    <P>taurus</P>
-    <a href="https://drive.google.com/file/d/1RX3KwiENEKt3ZvUOU6DmlMvR0jvjMCLT/view?usp=share_link"><h1 style="color: red;">karácsonyi ajándék</h1></a>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vonat</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-    
+/* Felső rész és menü */
+.felso {
+  background-color: rgba(51, 51, 51, 0.8);
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.felso h1 {
+  color: black;
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+/* Menü */
+#ulb {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#ulb li {
+  margin: 5px;
+}
+
+#ulb li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 8px 12px;
+  text-decoration: none;
+  background-color: #555;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+#ulb li a:hover {
+  background-color: #777;
+}
+
+#ulb li a.active {
+  background-color: #04AA6D;
+}
+
+/* Tartalom */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+h1.section-title {
+  font-size: 1.8em;
+  margin: 20px 0 10px 0;
+  color: red;
+}
+
+/* Reszponzív */
+@media (max-width: 600px) {
+  .felso h1 {
+    font-size: 1.5em;
+  }
+
+  #ulb {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #ulb li a {
+    width: 80%;
+    text-align: center;
+  }
+
+  h1.section-title {
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="felso">
+  <h1>Vonat</h1>
+  <ul id="ulb">
+    <li><a href="https://siposzoltan633.github.io/msts/index.html">Főoldal</a></li>
+    <li><a href="https://siposzoltan633.github.io/msts/Activity.html">Feladatok,Activity</a></li>
+    <li><a class="active" href="https://siposzoltan633.github.io/msts/vonat.html">Vonat,train</a></li>
+    <li><a href="https://siposzoltan633.github.io/msts/sound.html">sound</a></li>
+    <li><a href="https://siposzoltan633.github.io/msts/kijelzo.html">kijelzo</a></li>
+  </ul>
+</div>
+
+<div class="content">
+  <p>taurus</p>
+  <a href="https://drive.google.com/file/d/1RX3KwiENEKt3ZvUOU6DmlMvR0jvjMCLT/view?usp=share_link">
+    <h1 class="section-title">karácsonyi ajándék</h1>
+  </a>
+</div>
+
 </body>
 </html>
