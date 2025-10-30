@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jarmupark</title>
+<title>Járműpark</title>
 <style>
 body {
   margin: 0;
@@ -74,6 +74,19 @@ h1.section-title {
   color: red;
 }
 
+.download-link {
+  display: inline-block;
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+.counter {
+  color: black;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
 /* Reszponzív */
 @media (max-width: 600px) {
   .felso h1 {
@@ -91,11 +104,11 @@ h1.section-title {
   }
 
   h1.section-title {
-    font-size: 1.5em;
+    font-size: 1.4em;
   }
 
-  p {
-    font-size: 16px;
+  .counter {
+    font-size: 14px;
   }
 }
 </style>
@@ -114,17 +127,71 @@ h1.section-title {
 </div>
 
 <div class="content">
-  <p>taurus</p>
-  <a href="https://drive.google.com/file/d/1RX3KwiENEKt3ZvUOU6DmlMvR0jvjMCLT/view?usp=share_link">
-    <h1 class="section-title">karácsonyi ajándék</h1>
+  <p>Taurus</p>
+  <a href="https://drive.google.com/file/d/1RX3KwiENEKt3ZvUOU6DmlMvR0jvjMCLT/view?usp=share_link"
+     target="_blank"
+     class="download-link"
+     data-counter="taurus">
+    <h1 class="section-title">Karácsonyi ajándék</h1>
   </a>
-  <p>Bmx 3G festésel csak a 032-5-ös tartalmaza</p>
-  <a href="https://drive.google.com/file/d/1f5GTZWkBnnN3Yv1g1pz_5wQ6CElOjcgz/view?usp=drive_link" target="_blank">bmx.png</a>
+  <p id="taurus-counter" class="counter">0 letöltés</p>
+
+  <p>Bmx 3G festéssel (csak a 032-5-ös tartalmazza)</p>
+  <a href="https://drive.google.com/file/d/1f5GTZWkBnnN3Yv1g1pz_5wQ6CElOjcgz/view?usp=drive_link"
+     target="_blank"
+     class="download-link"
+     data-counter="bmx">
+    bmx.png
+  </a>
+  <p id="bmx-counter" class="counter">0 letöltés</p>
 </div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+<script>
+  // Firebase konfiguráció
+  const firebaseConfig = {
+    apiKey: "AIzaSyD35hrtc7Vs55IyUT3DLFB5xf6kPvtMvdw",
+    authDomain: "mstsdowloadsclick.firebaseapp.com",
+    databaseURL: "https://mstsdowloadsclick-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "mstsdowloadsclick",
+    storageBucket: "mstsdowloadsclick.firebasestorage.app",
+    messagingSenderId: "991734193545",
+    appId: "1:991734193545:web:2c62411b5201f022ed1558",
+    measurementId: "G-NGQTZKPR5F"
+  };
+
+  // Firebase inicializálás
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // Letöltés számlálók
+  const links = document.querySelectorAll('.download-link');
+
+  links.forEach(link => {
+    const counterId = link.dataset.counter;
+    const counterRef = db.ref('counters/' + counterId);
+
+    // Ha még nincs adat, hozzuk létre 0-val
+    counterRef.once('value').then(snapshot => {
+      if (snapshot.val() === null) counterRef.set(0);
+    });
+
+    // Valós idejű frissítés
+    counterRef.on('value', snapshot => {
+      const val = snapshot.val() || 0;
+      const counterElem = document.getElementById(counterId + '-counter');
+      if (counterElem) counterElem.textContent = val + " letöltés";
+    });
+
+    // Kattintásnál növelje a számlálót
+    link.addEventListener('click', () => {
+      counterRef.transaction(current => (current || 0) + 1);
+    });
+  });
+</script>
 
 </body>
 </html>
-
-
-
-
