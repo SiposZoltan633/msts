@@ -76,7 +76,7 @@ h2 {
 
 .download-link {
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   text-decoration: underline;
   color: white;
 }
@@ -100,11 +100,6 @@ h2 {
   h2 {
     font-size: 1.2em;
   }
-
-  .download-link {
-    display: block;
-    margin-bottom: 10px;
-  }
 }
 </style>
 </head>
@@ -123,24 +118,67 @@ h2 {
 
 <div class="content">
   <h2>Bzmot</h2>
-  <a href="https://drive.google.com/file/d/1HQrXk_0WoNC2FFASh7Aoc1H4lMndPl6L/view?usp=share_link" class="download-link">Bzmot sound</a>
+  <a href="https://drive.google.com/file/d/1HQrXk_0WoNC2FFASh7Aoc1H4lMndPl6L/view?usp=share_link"
+     class="download-link" data-counter="bzmot">Bzmot sound</a>
+  <p id="bzmot-counter">0 letöltés</p>
 
   <h2>Flirt</h2>
-  <a href="https://drive.google.com/file/d/1NEydeU-NW7yDCtsF138IauA4Ujqzbamy/view?usp=share_link" class="download-link">Flirt sound</a>
+  <a href="https://drive.google.com/file/d/1NEydeU-NW7yDCtsF138IauA4Ujqzbamy/view?usp=share_link"
+     class="download-link" data-counter="flirt">Flirt sound</a>
+  <p id="flirt-counter">0 letöltés</p>
 
   <h2>Sulzer</h2>
-  <a href="https://drive.google.com/file/d/11-OQQQiS330ug2N-7cCCb0nT6XYkkDQm/view?usp=share_link" class="download-link">Sulzer sound</a>
+  <a href="https://drive.google.com/file/d/11-OQQQiS330ug2N-7cCCb0nT6XYkkDQm/view?usp=share_link"
+     class="download-link" data-counter="sulzer">Sulzer sound</a>
+  <p id="sulzer-counter">0 letöltés</p>
 
   <h2>Szili</h2>
-  <a href="https://drive.google.com/file/d/1XAJbEzAobih7N3AbMTYYR-mGOdQP_jEo/view?usp=share_link" class="download-link">Szili sound</a>
-</div>
+  <a href="https://drive.google.com/file/d/1XAJbEzAobih7N3AbMTYYR-mGOdQP_jEo/view?usp=share_link"
+     class="download-link" data-counter="szili">Szili sound</a>
+  <p id="szili-counter">0 letöltés</p>
 
   <h2>Stadler kiss 815</h2>
-  <a href="https://drive.google.com/file/d/1Ib6ozzbdqj_12YLOeGyO-lR_rwtWfK0C/view?usp=sharing" class="download-link">Szili sound</a>
+  <a href="https://drive.google.com/file/d/1Ib6ozzbdqj_12YLOeGyO-lR_rwtWfK0C/view?usp=sharing"
+     class="download-link" data-counter="kiss815">Stadler Kiss 815 sound</a>
+  <p id="kiss815-counter">0 letöltés</p>
 </div>
-  
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyD35hrtc7Vs55IyUT3DLFB5xf6kPvtMvdw",
+    authDomain: "mstsdowloadsclick.firebaseapp.com",
+    databaseURL: "https://mstsdowloadsclick-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "mstsdowloadsclick",
+    storageBucket: "mstsdowloadsclick.firebasestorage.app",
+    messagingSenderId: "991734193545",
+    appId: "1:991734193545:web:2c62411b5201f022ed1558"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  document.querySelectorAll('.download-link').forEach(link => {
+    const id = link.dataset.counter;
+    const ref = db.ref('counters/' + id);
+
+    ref.once('value').then(snap => {
+      if (snap.val() === null) ref.set(0);
+    });
+
+    ref.on('value', snap => {
+      const el = document.getElementById(id + '-counter');
+      if (el) el.textContent = (snap.val() || 0) + " letöltés";
+    });
+
+    link.addEventListener('click', () => {
+      ref.transaction(v => (v || 0) + 1);
+    });
+  });
+</script>
 
 </body>
 </html>
-
-
