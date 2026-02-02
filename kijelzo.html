@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kijelzők</title>
+
 <style>
 body {
   margin: 0;
@@ -76,28 +77,15 @@ h2 {
 
 .download-link {
   display: inline-block;
-  margin-bottom: 15px;
   text-decoration: underline;
   color: white;
+  cursor: pointer;
 }
 
-/* Footer */
-footer {
-  background-color: rgba(51, 51, 51, 0.85);
+.counter {
+  margin-top: 5px;
+  font-weight: bold;
   color: white;
-  padding: 15px 20px;
-  border-radius: 10px 10px 0 0;
-  text-align: left;
-  margin-top: auto;
-}
-
-footer a {
-  color: #00bfff;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
 }
 
 /* Reszponzív */
@@ -119,18 +107,10 @@ footer a:hover {
   h2 {
     font-size: 1.2em;
   }
-
-  .download-link {
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  footer {
-    text-align: center;
-  }
 }
 </style>
 </head>
+
 <body>
 
 <div class="felso">
@@ -147,9 +127,60 @@ footer a:hover {
 <div class="content">
   <h2>Flirt</h2>
   <p>kijelző_pack</p>
-  <a href="https://drive.google.com/file/d/1wEop8-PGB6JZlIIzjVznBeOgmxTGEiVB/view?usp=share_link" class="download-link">Flirt kijelző_pack</a>
+
+  <a href="https://drive.google.com/file/d/1wEop8-PGB6JZlIIzjVznBeOgmxTGEiVB/view?usp=share_link"
+     target="_blank"
+     class="download-link"
+     data-counter="flirt">
+     Flirt kijelző_pack
+  </a>
+
+  <p id="flirt-counter" class="counter">0 letöltés</p>
 </div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyD35hrtc7Vs55IyUT3DLFB5xf6kPvtMvdw",
+    authDomain: "mstsdowloadsclick.firebaseapp.com",
+    databaseURL: "https://mstsdowloadsclick-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "mstsdowloadsclick",
+    storageBucket: "mstsdowloadsclick.firebasestorage.app",
+    messagingSenderId: "991734193545",
+    appId: "1:991734193545:web:2c62411b5201f022ed1558"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  const links = document.querySelectorAll('.download-link');
+
+  links.forEach(link => {
+    const counterId = link.dataset.counter;
+    if (!counterId) return;
+
+    const counterRef = db.ref('counters/' + counterId);
+
+    counterRef.once('value').then(snapshot => {
+      if (snapshot.val() === null) counterRef.set(0);
+    });
+
+    counterRef.on('value', snapshot => {
+      const val = snapshot.val() || 0;
+      const counterElem = document.getElementById(counterId + '-counter');
+      if (counterElem) {
+        counterElem.textContent = val + " letöltés";
+      }
+    });
+
+    link.addEventListener('click', () => {
+      counterRef.transaction(current => (current || 0) + 1);
+    });
+  });
+</script>
 
 </body>
 </html>
-
