@@ -136,5 +136,43 @@ p {
     <p>Az oldal fejlesztés alatt áll</p>
     <p>Ez az app régebbi android verziókra készült nem garantált hogy nem kapsz hibát, régebbi rendszereken elfut(tesztelve volt).</p>
     <a href="https://drive.google.com/file/d/1pnOLN6EM9BweeOOK0g5AfRuo-g-tXcwZ/view?usp=sharing">Hmmsim2 letöltés</a>
+
+    <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyD35hrtc7Vs55IyUT3DLFB5xf6kPvtMvdw",
+    authDomain: "mstsdowloadsclick.firebaseapp.com",
+    databaseURL: "https://mstsdowloadsclick-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "mstsdowloadsclick",
+    storageBucket: "mstsdowloadsclick.firebasestorage.app",
+    messagingSenderId: "991734193545",
+    appId: "1:991734193545:web:2c62411b5201f022ed1558",
+    measurementId: "G-NGQTZKPR5F"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  const links = document.querySelectorAll('.download-link');
+  links.forEach(link => {
+    const counterId = link.dataset.counter;
+    const counterRef = db.ref('counters/' + counterId);
+
+    counterRef.once('value').then(snapshot => {
+      if (snapshot.val() === null) counterRef.set(0);
+    });
+
+    counterRef.on('value', snapshot => {
+      const val = snapshot.val() || 0;
+      const counterElem = document.getElementById(counterId + '-counter');
+      if(counterElem) counterElem.textContent = val + " letöltés";
+    });
+
+    link.addEventListener('click', function(e) {
+      counterRef.transaction(current => (current || 0) + 1)
+        .then(() => console.log('Számláló növelve: ' + counterId))
+        .catch(err => console.error('Hiba a számláló növelésénél:', err));
+    });
+  });
+</script>
 </body>
 </html>
